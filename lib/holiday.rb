@@ -53,29 +53,52 @@ def all_winter_holiday_supplies(holiday_hash)
 end
 
 def all_supplies_in_holidays(holiday_hash)
-  holiday_hash.each do |name, data|
-    print "#{name}: #{data}" 
-    binding.pry 
+  holiday_hash.each do |season, data|
+    puts "#{season.to_s.capitalize}:"
+    data.each do |holiday, supplies|
+      
+    puts "  #{holiday.to_s.split("_").map{|w| w.capitalize}.join(" ")}: #{supplies.join(", ")}"  
   end 
-  # iterate through holiday_hash and print items such that your readout resembles:
-  # Winter:
-  #   Christmas: Lights, Wreath
-  #   New Years: Party Hats
-  # Summer:
-  #   Fourth Of July: Fireworks, BBQ
-  # etc.
-
 end
+end 
+
 
 def all_holidays_with_bbq(holiday_hash)
+  array = []
+  holiday_hash.each do |season, data| 
+  data.each do |data, supplies|  
+  if supplies.include?("BBQ")
+   array << data 
+  
+  end  
+
+  end 
+
+  
   # return an array of holiday names (as symbols) where supply lists
   # include the string "BBQ"
 
 end
+return array 
+end 
 
 
 
 
-
-
-
+ # given that holiday_hash looks like this:
+  # {
+  #   :winter => {
+  #     :christmas => ["Lights", "Wreath"],
+  #     :new_years => ["Party Hats"]
+  #   },
+  #   :summer => {
+  #     :fourth_of_july => ["Fireworks", "BBQ"]
+  #   },
+  #   :fall => {
+  #     :thanksgiving => ["Turkey"]
+  #   },
+  #   :spring => {
+  #     :memorial_day => ["BBQ"]
+  #   }
+  # }
+  # return the second element in the 4th of July array
